@@ -1,5 +1,7 @@
 public class Main {
-    public static void main(String[] args) {
+
+
+    public static void main(String[] args){
         String[] emails = new String[10];
         // je déclare un tableau de string qui peut contenir 10 elements
 
@@ -14,32 +16,8 @@ public class Main {
         emails[8] = "thierry@isitech.fr";
         emails[9] = "marie@isitech.fr";
 
-        // je remplie mon tableau emails et j'adresse chaque mail à un index
-
-
-        int compteurGmail = 0;
-        // je declare et j'intialise mon compteur de gmail
-        int totalEmails = emails.length;
-        // je declare et j'intiialise mon total d'adresse mail avec length
-        //System.out.println(totalEmails);
-        for (String email : emails) {
-            // boucle for qui itère tous les élements du tableau puis avec la methode endsWith on verifie les mails qui finissent pas "gmail.com" pour augmenter mon compteur
-            if (email.endsWith("@gmail.com")) {
-                compteurGmail++;
-                //System.out.println(compteurGmail);
-            }
-            // DOCS : public boolean endsWith(String suffix)
-            //Tests if this string ends with the specified suffix.
-            //Parameters:
-            //suffix - the suffix.
-            //Returns:
-            //true if the character sequence represented by the argument is a suffix of the character sequence represented by this object; false otherwise. Note that the result will be true if the argument is the empty string or is equal to this String object as determined by the equals(Object) method.
-        }
-        double percentage = (double) compteurGmail / totalEmails * 100;
-    // ensuite je calcule le pourcentage avec un double pour avoir un résultat décimal.
-        System.out.println("Pourcentage de fournisseurs Gmail : " + percentage + "%");
-        // j'affiche le résultat du pourcentage de fournisseurs
-
+        double percentage = calculEmailPercentage(emails);
+        System.out.println("Pourcentage de fournisseurs de gmail : " + percentage + "%");
     }
 
     public static double calculEmailPercentage(String[] emails){
