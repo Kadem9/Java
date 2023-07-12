@@ -1,13 +1,14 @@
+import java.util.Scanner;
+
 public class AccountBank {
 
     Client client;
     Double balance = 0.0;
-    Operation[] operations;
 
-    public AccountBank(Client client, Double balance, Operation[] operations){
+    public AccountBank(Client client, Double balance){
         this.client = client;
         this.balance = balance;
-        this.operations = operations;
+
     }
 
     public Client getClient() {
@@ -26,11 +27,51 @@ public class AccountBank {
         this.balance = balance;
     }
 
-    public Operation[] getOperations() {
-        return operations;
+    public void viewBalance(){
+        if(balance == 0){
+            System.out.println("You have no money.. Back to work!");
+            System.out.println("The account balance is : " + balance);
+            System.out.println("");
+        } else if (balance < 0) {
+            System.out.println("WARNING : You are in negative !");
+            System.out.println("The account balance is : " + balance);
+            System.out.println("");
+        } else {
+            System.out.println("The account balance is : " + balance);
+            System.out.println("");
+        }
     }
 
-    public void setOperations(Operation[] operations) {
-        this.operations = operations;
+    public void depositMoney(AccountBank accountBank){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("How much money do you want to deposit? : ");
+        Double moneyDeposit = scanner.nextDouble();
+
+        if(moneyDeposit <= 0){
+            System.out.println("");
+            System.out.println("It is not possible to deduct or give zero euros, please try again.");
+            System.out.println("How much money do you want to deposit? : ");
+           moneyDeposit = scanner.nextDouble();
+        }
+
+        setBalance(balance + moneyDeposit);
+        System.out.println("Yeaah, it's good ! Your account balance is : " + balance);
+        System.out.println("");
+
+
     }
+
+    public void drawMoney(AccountBank accountBank){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("How money you want to withdraw ?");
+        Double moneyWithDraw = scanner.nextDouble();
+
+        setBalance(balance - moneyWithDraw);
+
+        System.out.println("Your balance is now " + balance + " $");
+        System.out.println("");
+    }
+
 }
