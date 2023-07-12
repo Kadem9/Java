@@ -1,8 +1,12 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class Operation {
+    Random newId = new Random();
+    Integer randomId = newId.nextInt(10000);
+    Integer id = randomId;
     Date date;
     Client client;
     String typeOperation;

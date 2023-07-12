@@ -1,10 +1,16 @@
+import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        // Je genère mon chiffre aléatoire pour l'id
+        Random numberId = new Random();
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello ! Welcome to Maze Bank");
         System.out.println("Please, entry your informations");
@@ -20,12 +26,16 @@ public class Main {
 
         System.out.println("Your postal code : ");
         Integer postal = scanner.nextInt();
-        //scanner.nextLine();
+        scanner.nextLine();
 
         System.out.println("Your city : ");
         String city = scanner.nextLine();
 
-        Client clientBank = new Client(firstname, lastname, address, postal, city);
+        Integer id = numberId.nextInt(200000);
+
+        Client clientBank = new Client(id,firstname, lastname, address, postal, city);
+        Database db = new Database();
+        db.addUserOnDatabase(clientBank);
 
         AccountBank clientAccountBank = new AccountBank(clientBank, 0.0);
 
@@ -52,6 +62,7 @@ public class Main {
 
     public static String whatDoYouWant(Integer choice, AccountBank clientAccount){
         Scanner scanner = new Scanner(System.in);
+        Database database = new Database();
 
         switch (choice){
             case 1:
@@ -61,6 +72,7 @@ public class Main {
 
                 Operation operation1 = new Operation(new Date(), clientAccount.getClient(), "Consult sold", clientAccount.getBalance());
                 Operation.addOperation(operation1);
+                database.addOperationOnDatabase(operation1);
                 break;
             case 2:
                 System.out.println("");
@@ -69,6 +81,7 @@ public class Main {
 
                 Operation operation2 = new Operation(new Date(), clientAccount.getClient(), "Deposit Money", clientAccount.getBalance());
                 Operation.addOperation(operation2);
+                database.addOperationOnDatabase(operation2);
                 break;
             case 3:
                 System.out.println("");
@@ -78,6 +91,7 @@ public class Main {
 
                 Operation operation3 = new Operation(new Date(), clientAccount.getClient(), "WithDraw money", clientAccount.getBalance());
                 Operation.addOperation(operation3);
+                database.addOperationOnDatabase(operation3);
                 break;
             case 4:
                 System.out.println("");

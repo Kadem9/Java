@@ -1,12 +1,13 @@
 public class Client {
-
+    Integer id;
     String firsname;
     String lastname;
     String address;
     Integer postal;
     String city;
 
-    public Client(String firstname, String lastname, String address, Integer postal, String city){
+    public Client(Integer id, String firstname, String lastname, String address, Integer postal, String city){
+        this.id = id;
         this.firsname = firstname;
         this.lastname = lastname;
         this.address = address;
@@ -56,6 +57,14 @@ public class Client {
 
     public String getFullName(String fullName){
         return this.firsname + " " + this.lastname;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }
