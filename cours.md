@@ -310,3 +310,187 @@ Pour aller plus loin :
 - Elle doit prendre en paramètre un tableau de String qui contient des adresses mail
 - La fonction ne doit pas avoir connaissances du nom des fournisseurs
 - elle doit toujours afficher le pourcentage de fournisseurs de services mail, quel que soit le nombre de fournisseurs
+
+### Les chaines de caracteres
+
+Les chaines de caracteres sont des objets en java, elles sont donc soumises aux regles de la programmation orientee objet.
+
+```java
+String chaine = "une chaine de caracteres";
+```
+
+En memoire voici ce que ca donne :
+![Alt text](image-8.png)
+
+En general on a tendance a considerer les String comme des types primitifs, mais ce n'est pas le cas.
+En realite, lorsqu'on cree une string on cree une instance de la classe `String` qui contient un tableau de char.
+
+```java
+String chaine = new String("une chaine de caracteres");
+```
+
+Apres sa creation une chaine de caracteres ne peut plus etre modifiee. On dit qu'elle est `immutable`.
+
+```java
+\* cette instruction ne compile pas *\
+chaine = chaine + " et une autre chaine";
+```
+
+La classe String nous met a disposition de nombreux outils pour manupuler les chaines de caracteres.
+
+```java
+String chaine = "une chaine de caracteres";
+chaine.length(); // retourne la taille de la chaine
+chaine.charAt(0); // retourne le caractere a l'index 0
+chaine.substring(0, 4); // retourne la sous chaine de caracteres de l'index 0 a 4
+chaine.indexOf("chaine"); // retourne l'index de la premiere occurence de "chaine"
+chaine.replace("chaine", "string"); // remplace la premiere occurence de "chaine" par "string"
+chaine.toUpperCase(); // retourne la chaine en majuscule
+chaine.toLowerCase(); // retourne la chaine en minuscule
+chaine.trim(); // supprime les espaces en debut et fin de chaine
+chaine.split(" "); // retourne un tableau de String en decoupant la chaine a chaque espace
+chaine.equals("une chaine de caracteres"); // retourne true si les deux chaines sont identiques
+chaine.equalsIgnoreCase("UNE CHAINE DE CARACTERES"); // retourne true si les deux chaines sont identiques en ignorant la casse
+chaine.startsWith("une"); // retourne true si la chaine commence par "une"
+chaine.endsWith("res"); // retourne true si la chaine se termine par "res"
+```
+
+#### Comparer les chaines de caracteres
+
+En java il est impossible de comparer deux chaines de caracteres avec l'operateur `==`
+
+```java
+String chaine1 = "une chaine de caracteres";
+String chaine2 = "une chaine de caracteres";
+chaine1 == chaine2; // retourne false
+```
+
+Pour comparer deux chaines de caracteres il faut utiliser la methode `equals`
+
+```java
+String chaine1 = "une chaine de caracteres";
+String chaine2 = "une chaine de caracteres";
+chaine1.equals(chaine2); // retourne true
+```
+
+Cette fonction compare les chaines de caracteres caractere par caractere.
+
+La methode format permet de formater une chaine de caracteres en utilisant des marqueurs de position.
+
+```java
+boolen estVrai = true;
+int entier = 10;
+double decimal = 10.5;
+String chaine = "une chaine de caracteres";
+System.out.println("un booleen : %b, un entier : %d, un decimal : %f, une chaine : %s", estVrai, entier, decimal, chaine);
+```
+
+ou encore
+
+```java
+boolean b=true;
+String s="chaine";
+int i=56;
+double d=5.5;
+System.out.println(String.format("boolean : %b %n" +
+                 "chaine de caractères : %s %n" +
+                 "entier : %d %n" +
+                 "entier en hexadécimal : %x %n" +
+                 "entier en octal : %o %n" +
+                 "décimal : %f %n" +
+                 "décimal précis au dixième : %.1f %n" +
+                 "décimal au format scientifique : %e %n",
+                 b,s,i,i,i,d,d,d));
+```
+
+Exercice 2 :
+
+Générer trois nombres aléatoires compris entre 0 et 1000, puis vérifier si vous avez deux nombres pairs suivis par un nombre impair. Si ce n’est pas le cas, recommencer jusqu’à ce que vous ayez la combinaison pair, pair, impair. Afficher ensuite le nombre d’essais nécessaires pour obtenir cette combinaison.
+
+Exercice 3 :
+
+Creez un juste prix en console avec un affichage du temps et du nombre de tentatives mises par l'utilisateur pour trouver le juste prix.
+
+### Les conversions
+
+En java il existe deux types de conversions :
+
+- les conversions implicites
+- les conversions explicites
+
+#### Les conversions implicites
+
+Les conversions implicites sont des conversions qui sont faites automatiquement par le compilateur.
+
+```java
+int entier = 10;
+double decimal = entier; // conversion implicite
+```
+
+#### Les conversions explicites
+
+Les conversions explicites sont des conversions qui sont faites par le programmeur.
+
+```java
+double decimal = 10.5;
+int entier = (int) decimal; // conversion explicite
+```
+
+La conversion entre types numeriques est possible si le type de destination est plus grand que le type source.
+
+```java
+int entier = 10;
+double decimal = entier; // conversion implicite
+```
+
+La conversion vers des chaines de caractères est possible pour tous les types.
+
+```java
+int entier = 10;
+String chaine = String.valueOf(entier); // conversion explicite
+```
+
+Dans certains cas il n'y a pas besoin d'utiliser une methode pour convertir un type en chaine de caracteres.
+
+```java
+int entier = 10;
+String chaine = "" + entier; // conversion implicite
+```
+
+
+Exercice 4 :
+
+Ecrire un programme qui demande à l’utilisateur de saisir un nombre entier et qui affiche sa valeur en binaire, octale et hexadécimale.
+
+La conversion depuis une chaine de caractères: la classe Integer
+
+La classe Integer permet de convertir une chaine de caractères en un entier.
+
+```java
+String chaine = "10";
+int entier = Integer.parseInt(chaine); // conversion explicite
+```
+
+L'inférence de type
+
+Depuis Java 10, il est possible de déclarer une variable sans préciser son type. Le compilateur va alors inférer le type de la variable en fonction de la valeur qui lui est affectée.
+
+```java
+var entier = 10;
+var decimal = 10.5;
+var chaine = "une chaine de caracteres";
+```
+
+La programmatin orientee objet
+
+Exercice 5 :
+
+Créer une classe représentant un article d’un magasin de vente par en ligne. Un article est caractérisé par sa référence, sa désignation, son prix. Créer ensuite une méthode main permettant de tester le bon fonctionnement de la classe précédente.
+
+Exercice 6 :
+
+Créer une classe représentant un client d’un magasin de vente par en ligne. Un client est caractérisé par son nom, son prénom, son adresse, son code postal et sa ville. Créer ensuite une méthode main permettant de tester le bon fonctionnement de la classe précédente.
+
+Exercice 7 :
+
+Créer une classe représentant une commande d’un magasin de vente par en ligne. Une commande est caractérisée par son numéro, sa date, le client qui passe la commande, le tableau des articles commandés et le tableau des quantités commandées pour chaque article. Créer ensuite une méthode main permettant de tester le bon fonctionnement de la classe précédente.
