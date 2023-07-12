@@ -3,7 +3,6 @@
 // le tableau des articles commandés et le tableau des quantités commandées pour chaque article.
 // Créer ensuite une méthode main permettant de tester le bon fonctionnement de la classe précédente.
 
-import java.lang.reflect.Array;
 import java.util.Date;
 
 public class Order {

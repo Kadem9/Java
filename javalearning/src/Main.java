@@ -31,8 +31,8 @@ public class Main {
 
         for (int i = 0; i < order.getArticles().length ; i++){
             Article article = order.getArticles()[i];
-            int quantite = order.getQuantity()[i];
-            System.out.println("- " + article.getDesignation() + " (Quantity : " + quantite + ")");
+            int quantity = order.getQuantity()[i];
+            System.out.println("- " + article.getDesignation() + " (Quantity : " + quantity + ")");
         }
 
     }
