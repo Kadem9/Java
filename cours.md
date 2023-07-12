@@ -494,3 +494,187 @@ Créer une classe représentant un client d’un magasin de vente par en ligne. 
 Exercice 7 :
 
 Créer une classe représentant une commande d’un magasin de vente par en ligne. Une commande est caractérisée par son numéro, sa date, le client qui passe la commande, le tableau des articles commandés et le tableau des quantités commandées pour chaque article. Créer ensuite une méthode main permettant de tester le bon fonctionnement de la classe précédente.
+
+### La programmation orientee objet
+
+La programmation orientee objet est un paradigme de programmation qui permet de representer des objets du monde reel en utilisant des classes et des objets.
+
+#### Les classes
+
+Voici la syntaxe pour creer une classe en java :
+
+```java
+public class NomDeLaClasse {
+    // attributs / champs
+    // constructeurs
+    // methodes
+}
+```
+
+Les classes sont constituees de champs, de constructeurs et de methodes. Les champs representent les donnees de la classe, les constructeurs permettent de creer des objets et les methodes permettent de manipuler les objets.
+
+A ces notions fondamentales vont s'ajouter trois concepts importants :
+
+- l'encapsulation
+- l'heritage
+- le polymorphisme
+
+L'encapsulation permet de proteger les donnees d'une classe en les rendant privees.
+On va ainsi cacher certains elements qui ne sont pas necessaire a l'utilisateur de la classe, mais necessaire a son bon fonctionnement.
+Dans le cas d'une classe Article, l'utilisateur n'a pas besoin de connaitre le prix de revient de l'article, mais il a besoin de connaitre son prix de vente.
+Dans le cas d'une voiture, l'utilisateur n'a pas besoin de connaitre la vitesse de rotation du moteur, mais il a besoin de connaitre la vitesse de la voiture.
+
+Les elements de la classes visibles depuis l'exterieur constitue l'interface de la classe.
+
+L'heritage permet de creer des classes filles a partir d'une classe mere. Autrement dit on cree un nouvelle classe a partir d'une classe existante. La classe fille herite de tous les elements de la classe mere. On peut alors ajouter des elements supplementaires a la classe fille.
+
+Le polymorphisme permet de manipuler des objets de classes differentes avec une meme interface.
+Ce concept est un peu difficile a comprendre au depart, mais il est tres important en programmation orientee objet.
+Il est possibles d'utiliser plusieurs classes differentes qui ont une meme interface.
+Deux autres concepts sont souvent associes au polymorphisme : la surcharge et la substitution.
+
+Mise en pratique avec JAVA:
+
+![Alt text](image-9.png)
+
+Declaration d'une classe :
+
+```java
+[modificateur] class NomDeLaClasse [extends NomDeLaClasseMere] [implements NomDeLinterface  ]  {
+
+    // Code source de la classe
+    // attributs / champs
+    // constructeurs
+    // methodes
+}
+```
+
+Les modificateurs de classes :
+
+- public : la classe est visible depuis n'importe quel autre classe. Sans ce modificateur, la classe est visible uniquement depuis le package dans lequel elle est declaree.
+- abstract: la classe est abstraite. Une classe abstraite ne peut pas etre instanciee.
+- final: la classe ne peut pas etre heritee.
+
+Les methodes de classes :
+
+```java
+    [modificateur] typeDeRetour nomDeLaMethode([parametres]) {
+        // code source de la methode
+    }
+```
+
+Les modificateurs de methodes :
+
+- public : la methode est visible depuis n'importe quel autre classe. Sans ce modificateur, la methode est visible uniquement depuis le package dans lequel elle est declaree.
+- protected : la methode est visible depuis la classe, le package et les classes filles.
+- private : la methode est visible uniquement depuis la classe.
+- static : la methode est une methode de classe. Elle peut etre utilisee sans instancier la classe.
+- abstract : la methode est abstraite. Elle doit etre redefinie dans les classes filles.
+- final : la methode ne peut pas etre redefinie dans les classes filles.
+- native : la methode est implementee dans un langage autre que Java.
+- synchronized : la methode ne peut etre utilisee que par un seul thread a la fois.
+
+Creation d'accesseurs pour les champs prives (getter et setter):
+
+```java
+    public typeDeRetour getNomDuChamp() {
+        return nomDuChamp;
+    }
+
+    public void setNomDuChamp(typeDuChamp nomDuChamp) {
+        this.nomDuChamp = nomDuChamp;
+    }
+```
+
+Les constructeurs d'une classe :
+
+Il s'agit d'une methode particuliere qui permet de creer des objets a partir d'une classe.
+Le constructeur porte le meme nom que la classe et n'a pas de type de retour.
+Il est possible de creer plusieurs constructeurs dans une classe. On parle de surcharge de constructeurs.
+Si aucun constructeur n'est declare dans une classe, un constructeur par defaut est cree par le compilateur.
+Ce constructeur par defaut est un constructeur vide qui ne fait rien.
+
+```java
+    public NomDeLaClasse() {
+        // code source du constructeur
+    }
+```
+
+Declaration de la classe Personne:
+
+```java
+public class Personne {
+    // attributs / champs
+    private String nom;
+    public String prenom;
+
+    // accessible depuis la classe, le package et les classes filles
+    protected String adresse;
+    private String codePostal;
+    private String ville;
+
+    // constructeurs
+    public Personne() {
+    }
+
+    public Personne(String nom, String prenom, String adresse, String codePostal, String ville) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.codePostal = codePostal;
+        this.ville = ville;
+    }
+
+    // methodes
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(String codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    @Override
+    public String toString() {
+        return "Personne{" +
+                "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", codePostal='" + codePostal + '\'' +
+                ", ville='" + ville + '\'' +
+                '}';
+    }
+}
+```
