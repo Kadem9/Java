@@ -53,14 +53,14 @@ public class Main {
             System.out.println("Your choice: ");
             choice = scanner.nextInt();
 
-            whatDoYouWant(choice, clientAccountBank);
+            whatDoYouWant(choice, clientAccountBank, clientBank);
 
         } while (choice != 6);
 
 
     }
 
-    public static String whatDoYouWant(Integer choice, AccountBank clientAccount){
+    public static String whatDoYouWant(Integer choice, AccountBank clientAccount, Client client){
         Scanner scanner = new Scanner(System.in);
         Database database = new Database();
 
@@ -86,7 +86,6 @@ public class Main {
             case 3:
                 System.out.println("");
                 System.out.println("You want draw money");
-                System.out.println("How money you want to withdraw ?");
                 clientAccount.drawMoney(clientAccount);
 
                 Operation operation3 = new Operation(new Date(), clientAccount.getClient(), "WithDraw money", clientAccount.getBalance());
@@ -106,7 +105,8 @@ public class Main {
                 break;
             case 5:
                 System.out.println("");
-                System.out.println("You want edit your information account");
+                System.out.println("You want to edit your account information");
+                client.editClientInformation(client);
                 break;
             case 6:
                 System.out.println("Exit");

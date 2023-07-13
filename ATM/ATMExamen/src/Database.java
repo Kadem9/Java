@@ -6,11 +6,11 @@ import java.sql.Statement;
 public class Database {
     // Vidéo qui m'a aidé : https://www.youtube.com/watch?v=AHFBPxWebFQ&ab_channel=CodeWithArjun
 
-    public static void main(String [] args){
+    String url = "jdbc:mysql://localhost:3306/mazebank";
+    String username = "root";
+    String password = "root";
 
-        String url = "jdbc:mysql://localhost:3306/mazebank";
-        String username = "root";
-        String password = "root";
+    public void main(String [] args){
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -32,9 +32,6 @@ public class Database {
 
     // Methode pour enregistrer mes users
     public void addUserOnDatabase(Client client) {
-        String url = "jdbc:mysql://localhost:3306/mazebank";
-        String username = "root";
-        String password = "root";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -61,9 +58,6 @@ public class Database {
     // Methode pour ajouter mes opérations en db
 
     public void addOperationOnDatabase(Operation operation) {
-        String url = "jdbc:mysql://localhost:3306/mazebank";
-        String username = "root";
-        String password = "root";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -76,6 +70,27 @@ public class Database {
                     operation.client.id + "')";
 
             statement.executeUpdate(insertQuery);
+
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void updateUserInDatabase(Client client) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, username, password);
+            Statement statement = connection.createStatement();
+
+            String updateQuery = "UPDATE client SET firstname='" + client.getFirsname() +
+                    "', lastname='" + client.getLastname() +
+                    "', address='" + client.getAddress() +
+                    "', postal=" + client.getPostal() +
+                    ", city='" + client.getCity() +
+                    "' WHERE id=" + client.getId();
+
+            statement.executeUpdate(updateQuery);
 
             connection.close();
         } catch (Exception e) {

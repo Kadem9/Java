@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Client {
     Integer id;
     String firsname;
@@ -13,6 +15,14 @@ public class Client {
         this.address = address;
         this.postal = postal;
         this.city = city;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirsname() {
@@ -59,12 +69,64 @@ public class Client {
         return this.firsname + " " + this.lastname;
     }
 
-    public Integer getId() {
-        return id;
-    }
+    public void editClientInformation(Client client) {
+        Database db = new Database();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Select the information you want edit:");
+        System.out.println("1. Firstname");
+        System.out.println("2. Lastname");
+        System.out.println("3. Address");
+        System.out.println("4. Postal");
+        System.out.println("5. City");
+        System.out.println("6. Return to the main menu");
+        System.out.println("Your choice: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
 
-    public void setId(Integer id) {
-        this.id = id;
+        switch (choice) {
+            case 1:
+                System.out.println("Enter the new firstname: ");
+                String newFirstname = scanner.nextLine();
+                setFirsname(newFirstname);
+                System.out.println("Firstname updated successfully.");
+                db.updateUserInDatabase(client);
+                break;
+            case 2:
+                System.out.println("Enter the new lastname: ");
+                String newLastname = scanner.nextLine();
+                setLastname(newLastname);
+                System.out.println("Lastname updated successfully.");
+                db.updateUserInDatabase(client);
+                break;
+            case 3:
+                System.out.println("Enter the new address: ");
+                String newAddress = scanner.nextLine();
+                setAddress(newAddress);
+                System.out.println("Address updated successfully.");
+                db.updateUserInDatabase(client);
+                break;
+            case 4:
+                System.out.println("Enter the new postal code: ");
+                Integer newPostal = scanner.nextInt();
+                scanner.nextLine();
+                setPostal(newPostal);
+                System.out.println("Postal updated successfully.");
+                db.updateUserInDatabase(client);
+                break;
+            case 5:
+                System.out.println("Enter the new city: ");
+                String newCity = scanner.nextLine();
+                setCity(newCity);
+                System.out.println("City updated successfully.");
+                db.updateUserInDatabase(client);
+                break;
+            case 6:
+                System.out.println("Returning to the main menu...");
+                break;
+            default:
+                System.out.println("Invalid choice. Returning to the main menu...");
+                break;
+        }
     }
 
 }
